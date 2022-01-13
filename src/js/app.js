@@ -4,37 +4,68 @@ let firstInput = document.getElementById('firstInput');
 let secondInput = document.getElementById('secondInput');
 
 //logic
-function euclidesAlgorithm(firstNumber,secondNumber){
-    if(secondNumber === 0){
-        throw new Error('El segundo elemento no puede ser 0');
-    }
-
+function euclidesAlgorithm(firstNumber, secondNumber) {
     let c = Math.abs(firstNumber);
     let d = Math.abs(secondNumber);
     let r;
 
-    while(d !== 0){
+    while (d !== 0) {
         r = c % d;
         c = d;
         d = r;
     }
-    
-    return Swal.fire({
-            title: 'Resultado',
-            text:`El mcd (${firstNumber},${secondNumber}) es: ${Math.abs(c)}`,
-            icon: 'success'
+
+    return Math.abs(c);
+}
+
+function isNumber(number) {
+    return number === '0' ||
+        number === '1' ||
+        number === '2' ||
+        number === '3' ||
+        number === '4' ||
+        number === '5' ||
+        number === '6' ||
+        number === '7' ||
+        number === '8' ||
+        number === '9'
+}
+
+function isValidateNumber(number) {
+    for (let i = 0; i < number.length; i++) {       
+        if (!isNumber(number.charAt(i))) {
+            return false;
         }
-    );
+    }
+    return true;
 }
 
 //Handle of events
-btnCalcular.addEventListener('click',() => {
-    try{
-        euclidesAlgorithm(parseInt(firstInput.value),parseInt(secondInput.value));
-    }catch (e){
+btnCalcular.addEventListener('click', () => {
+    try {
+        if (isValidateNumber(firstInput.value) && isValidateNumber(secondInput.value)) {
+
+            let firstNumber = parseInt(firstInput.value);
+            let secondNumber = parseInt(secondInput.value);
+
+            if (secondNumber === 0) {
+                throw new Error('El segundo elemento no puede ser 0');
+            }
+
+            Swal.fire({
+                title: 'Resultado',
+                text: `El mcd (${firstNumber},${secondNumber}) es: ${euclidesAlgorithm(firstNumber, secondNumber)}`,
+                icon: 'success'
+            });
+        }else{
+            throw new Error('Asegurese que la entrada son solo números');
+        }
+
+    } catch (err) {
         Swal.fire({
-            text: e.message,
-            icon: 'error',}
+                text: err.message,
+                icon: 'error',
+            }
         );
     }
 });
