@@ -32,18 +32,26 @@ function isNumber(number) {
 }
 
 function isValidateNumber(number) {
-    for (let i = 0; i < number.length; i++) {       
-        if (!isNumber(number.charAt(i))) {
-            return false;
+    if(number === ''){
+        return false;
+    }else{
+        for (let i = 0; i < number.length; i++) {       
+            if (!isNumber(number.charAt(i))) {
+                return false;
+            }
         }
+        return true;
     }
-    return true;
 }
 
 //Handle of events
 btnCalcular.addEventListener('click', () => {
     try {
-        if (isValidateNumber(firstInput.value) && isValidateNumber(secondInput.value)) {
+        
+        let isValidateInput =  (isValidateNumber(firstInput.value) && 
+        isValidateNumber(secondInput.value));
+
+        if (isValidateInput) {
 
             let firstNumber = parseInt(firstInput.value);
             let secondNumber = parseInt(secondInput.value);
@@ -54,7 +62,7 @@ btnCalcular.addEventListener('click', () => {
 
             Swal.fire({
                 title: 'Resultado',
-                text: `El mcd (${firstNumber},${secondNumber}) es: ${euclidesAlgorithm(firstNumber, secondNumber)}`,
+                text: `El mcd (${firstNumber},${secondNumber}) = ${euclidesAlgorithm(firstNumber, secondNumber)}`,
                 icon: 'success'
             });
         }else{
