@@ -2,7 +2,7 @@
 let btnCalcular = document.getElementById('btnCalcular');
 let firstInput = document.getElementById('firstInput');
 let secondInput = document.getElementById('secondInput');
-
+let lblResult = document.getElementById('lblResult');
 //logic
 function euclidesAlgorithm(firstNumber, secondNumber) {
     let c = Math.abs(firstNumber);
@@ -60,11 +60,8 @@ btnCalcular.addEventListener('click', () => {
                 throw new Error('El segundo elemento no puede ser 0');
             }
 
-            Swal.fire({
-                title: 'Resultado',
-                text: `El mcd (${firstNumber},${secondNumber}) = ${euclidesAlgorithm(firstNumber, secondNumber)}`,
-                icon: 'success'
-            });
+            lblResult.innerText =`El mcd (${firstNumber},${secondNumber}) = ${euclidesAlgorithm(firstNumber, secondNumber)}`;
+            
         }else{
             throw new Error('Asegurese que la entrada son solo números');
         }
