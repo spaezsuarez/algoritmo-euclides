@@ -9,6 +9,8 @@ para aplicar el [algoritmo de Euclides](https://es.khanacademy.org/computing/com
 
 ## Vistas de la pagina
 
+![Version actual desplegada](https://spaezsuarez.github.io/algoritmo-euclides/)
+
 - Menu principal
 ![Menu Principal](doc/1.png)
 
